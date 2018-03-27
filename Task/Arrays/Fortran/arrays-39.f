@@ -1,1 +1,1 @@
-i_min = lbound (a)
+i_min = lbound(a)

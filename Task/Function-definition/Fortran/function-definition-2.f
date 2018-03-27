@@ -1,1 +1,1 @@
-     MULTF(I,J)=I*J
+     MULTF(I, J) = I*J

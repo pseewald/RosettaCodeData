@@ -1,2 +1,2 @@
 integer, dimension(:), pointer :: array
-  allocate(array(100))
+allocate (array(100))

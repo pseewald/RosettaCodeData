@@ -7,8 +7,8 @@ INTEGER(i16) :: twobytes = 0
 INTEGER(i32) :: fourbytes = 0
 INTEGER(i64) :: eightbytes = 0
 
-WRITE (*,*) BIT_SIZE(onebyte), DIGITS(onebyte)             ! prints 8 and 7
-WRITE (*,*) BIT_SIZE(twobytes), DIGITS(twobytes)           ! prints 16 and 15
-WRITE (*,*) BIT_SIZE(fourbytes),  DIGITS(fourbytes)        ! prints 32 and 31
-WRITE (*,*) BIT_SIZE(eightbytes),  DIGITS(eightbytes)      ! prints 64 and 63
-WRITE (*,*) DIGITS(0.0), DIGITS(0d0)                       ! prints 24 and 53
+WRITE (*, *) BIT_SIZE(onebyte), DIGITS(onebyte)             ! prints 8 and 7
+WRITE (*, *) BIT_SIZE(twobytes), DIGITS(twobytes)           ! prints 16 and 15
+WRITE (*, *) BIT_SIZE(fourbytes), DIGITS(fourbytes)        ! prints 32 and 31
+WRITE (*, *) BIT_SIZE(eightbytes), DIGITS(eightbytes)      ! prints 64 and 63
+WRITE (*, *) DIGITS(0.0), DIGITS(0d0)                       ! prints 24 and 53

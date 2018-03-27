@@ -1,1 +1,1 @@
-real, dimension (10) :: a
+real, dimension(10) :: a

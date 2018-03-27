@@ -1,10 +1,10 @@
 program main
 
- character(len=:),allocatable :: str
+   character(len=:), allocatable :: str
 
- str = 'hello'
- str = str//' world'
+   str = 'hello'
+   str = str//' world'
 
- write(*,*) str
+   write (*, *) str
 
 end program main

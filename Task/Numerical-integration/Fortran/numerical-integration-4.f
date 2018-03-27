@@ -1,13 +1,13 @@
 module FunctionHolder
-  implicit none
+   implicit none
 
 contains
 
-  pure function afun(x)
-    real :: afun
-    real, intent(in) :: x
+   pure function afun(x)
+      real :: afun
+      real, intent(in) :: x
 
-    afun = x**2
-  end function afun
+      afun = x**2
+   end function afun
 
 end module FunctionHolder

@@ -1,8 +1,8 @@
 type node
    real :: data
-   type( node ), pointer :: next => null()
+   type(node), pointer :: next => null()
 end type node
 !
 !. . . .
 !
-type( node ) :: head
+type(node) :: head

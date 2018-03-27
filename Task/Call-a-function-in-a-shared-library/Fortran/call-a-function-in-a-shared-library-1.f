@@ -1,4 +1,4 @@
-double add_n(double* a, double* b)
+double add_n(double*a, double*b)
 {
-return *a + *b;
+return*a + *b; 
 }

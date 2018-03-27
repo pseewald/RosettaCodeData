@@ -10,10 +10,10 @@ program fox_rosetta
    character(len=100) :: name
 
    doc => parseFile("rosetta.xml")
-   if(.not. associated(doc)) stop "error doc"
+   if (.not. associated(doc)) stop "error doc"
 
    p1 => item(getElementsByTagName(doc, "Students"), 0)
-   if(.not. associated(p1)) stop "error p1"
+   if (.not. associated(p1)) stop "error p1"
    ! write(*,*) getNodeName(p1)
 
    pointList => getElementsByTagname(p1, "Student")
@@ -22,7 +22,7 @@ program fox_rosetta
    do i = 0, getLength(pointList) - 1
       p2 => item(pointList, i)
       call extractDataAttribute(p2, "Name", name)
-      write(*,*) name
+      write (*, *) name
    enddo
 
    call destroy(doc)

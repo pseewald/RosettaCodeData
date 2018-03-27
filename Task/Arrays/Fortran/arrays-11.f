@@ -1,1 +1,1 @@
-integer, dimension (:), allocatable :: a
+integer, dimension(:), allocatable :: a

@@ -1,1 +1,1 @@
-allocate (a (10, 10))
+allocate (a(10, 10))

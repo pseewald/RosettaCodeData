@@ -5,4 +5,4 @@ end type node
 !
 ! . . . .
 !
-type( node ), target :: head
+type(node), target :: head

@@ -1,3 +1,3 @@
-      DO GASP = 1,MAXLEVEL
-        CALL TARZAN(1,HOW)
+      DO GASP = 1, MAXLEVEL
+         CALL TARZAN(1, HOW)
       END DO

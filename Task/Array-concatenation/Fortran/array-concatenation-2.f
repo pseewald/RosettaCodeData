@@ -1,12 +1,12 @@
 program Concat_Arrays
-implicit none
+   implicit none
 
-  integer, dimension(3) :: a = [ 1, 2, 3 ]
-  integer, dimension(3) :: b = [ 4, 5, 6 ]
-  integer, dimension(:), allocatable :: c
+   integer, dimension(3) :: a = [1, 2, 3]
+   integer, dimension(3) :: b = [4, 5, 6]
+   integer, dimension(:), allocatable :: c
 
-  c = [a, b]
+   c = [a, b]
 
-  write(*,*) c
+   write (*, *) c
 
 end program Concat_Arrays

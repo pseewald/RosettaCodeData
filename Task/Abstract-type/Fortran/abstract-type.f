@@ -7,7 +7,7 @@
    end type TFigure
    ! only declaration of the abstract method/procedure for TFigure type
    abstract interface
-      function  calculate_area(this)
+      function calculate_area(this)
          import TFigure !imports TFigure type from host scoping unit and makes it accessible here
          implicit none
          class(TFigure) :: this

@@ -1,1 +1,1 @@
-integer, dimension (0 : 9) :: a
+integer, dimension(0:9) :: a

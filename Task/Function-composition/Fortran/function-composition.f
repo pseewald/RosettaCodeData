@@ -1,18 +1,18 @@
 module functions_module
    implicit none
    private ! all by default
-   public :: f,g
+   public :: f, g
 
 contains
 
-   pure function  f(x)
+   pure function f(x)
       implicit none
       real, intent(in) :: x
       real :: f
       f = sin(x)
    end function f
 
-   pure function  g(x)
+   pure function g(x)
       implicit none
       real, intent(in) :: x
       real :: g
@@ -27,13 +27,13 @@ module compose_module
    public :: compose
 
    interface
-      pure function  f(x)
+      pure function f(x)
          implicit none
          real, intent(in) :: x
          real :: f
       end function f
 
-      pure function  g(x)
+      pure function g(x)
          implicit none
          real, intent(in) :: x
          real :: g
@@ -42,25 +42,25 @@ module compose_module
 
 contains
 
-   impure function  compose(x, fi, gi)
+   impure function compose(x, fi, gi)
       implicit none
       real, intent(in) :: x
       procedure(f), optional :: fi
       procedure(g), optional :: gi
       real :: compose
 
-      procedure (f), pointer, save :: fpi => null()
-      procedure (g), pointer, save :: gpi => null()
+      procedure(f), pointer, save :: fpi => null()
+      procedure(g), pointer, save :: gpi => null()
 
-      if(present(fi) .and. present(gi))then
+      if (present(fi) .and. present(gi)) then
          fpi => fi
          gpi => gi
          compose = 0
          return
       endif
 
-      if(.not. associated(fpi)) error stop "fpi"
-      if(.not. associated(gpi)) error stop "gpi"
+      if (.not. associated(fpi)) error stop "fpi"
+      if (.not. associated(gpi)) error stop "gpi"
 
       compose = fpi(gpi(x))
 
@@ -74,6 +74,6 @@ program test_compose
    use functions_module
    use compose_module
    implicit none
-   write(*,*) "prepare compose:", compose(0.0, f,g)
-   write(*,*) "run compose:", compose(0.5)
+   write (*, *) "prepare compose:", compose(0.0, f, g)
+   write (*, *) "run compose:", compose(0.5)
 end program test_compose

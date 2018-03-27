@@ -16,12 +16,12 @@ i = ibset(k, 13)      ! returns value of K with 13th bit position "set" (set to 
 
 ! multi-bit integer operations
 i = ishft(k, j)       ! returns value of K shifted by J bit positions, with ZERO fill
-                      !    (right shift if J < 0 and left shift if J > 0).
+!    (right shift if J < 0 and left shift if J > 0).
 i = ishftc(k, j)      ! returns value of K shifted CIRCULARLY by J bit positions
-                      !    (right circular shift if J < 0 and left if J > 0)
+!    (right circular shift if J < 0 and left if J > 0)
 i = ishftc(k, j, 20)  ! returns value as before except that ONLY the 20 lowest order
-                      !    (rightmost) bits are circularly shifted
+!    (rightmost) bits are circularly shifted
 i = ibits(k, 7, 8)    ! extracts 8 contiguous bits from K starting at position 7 and
-                      !    returns them as the rightmost bits of an otherwise
-                      !    zero-filled integer. For non-negative K this is
-                      !    arithmetically equivalent to:   MOD((K / 2**7), 2**8)
+!    returns them as the rightmost bits of an otherwise
+!    zero-filled integer. For non-negative K this is
+!    arithmetically equivalent to:   MOD((K / 2**7), 2**8)

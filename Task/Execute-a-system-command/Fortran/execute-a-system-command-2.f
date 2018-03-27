@@ -1,3 +1,3 @@
 program SystemTest
-  call system("ls")
+   call system("ls")
 end program SystemTest

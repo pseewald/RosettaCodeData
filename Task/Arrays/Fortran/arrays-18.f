@@ -1,1 +1,1 @@
-integer, dimension (10) :: a = 0
+integer, dimension(10) :: a = 0

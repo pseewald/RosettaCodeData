@@ -1,35 +1,35 @@
 module Polygons
-  use Points_Module
-  implicit none
+   use Points_Module
+   implicit none
 
-  type polygon
-     type(point), dimension(:), allocatable :: points
-     integer, dimension(:), allocatable :: vertices
-  end type polygon
+   type polygon
+      type(point), dimension(:), allocatable :: points
+      integer, dimension(:), allocatable :: vertices
+   end type polygon
 
 contains
 
-  function create_polygon(pts, vt)
-    type(polygon) :: create_polygon
-    type(point), dimension(:), intent(in) :: pts
-    integer, dimension(:), intent(in) :: vt
+   function create_polygon(pts, vt)
+      type(polygon) :: create_polygon
+      type(point), dimension(:), intent(in) :: pts
+      integer, dimension(:), intent(in) :: vt
 
-    integer :: np, nv
+      integer :: np, nv
 
-    np = size(pts,1)
-    nv = size(vt,1)
+      np = size(pts, 1)
+      nv = size(vt, 1)
 
-    allocate(create_polygon%points(np), create_polygon%vertices(nv))
-    create_polygon%points = pts
-    create_polygon%vertices = vt
+      allocate (create_polygon%points(np), create_polygon%vertices(nv))
+      create_polygon%points = pts
+      create_polygon%vertices = vt
 
-  end function create_polygon
+   end function create_polygon
 
-  subroutine free_polygon(pol)
-    type(polygon), intent(inout) :: pol
+   subroutine free_polygon(pol)
+      type(polygon), intent(inout) :: pol
 
-    deallocate(pol%points, pol%vertices)
+      deallocate (pol%points, pol%vertices)
 
-  end subroutine free_polygon
+   end subroutine free_polygon
 
 end module Polygons

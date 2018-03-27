@@ -1,2 +1,2 @@
 real, target :: areal
-  pointertoreal => areal
+pointertoreal => areal

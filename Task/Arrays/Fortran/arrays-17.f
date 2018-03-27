@@ -1,2 +1,2 @@
 integer :: i
-integer, dimension (10) :: a = (/(i * i, i = 1, 10)/)
+integer, dimension(10) :: a = (/(i*i, i=1, 10)/)

@@ -1,1 +1,1 @@
-        OPEN (F,STATUS = 'SCRATCH')   !Temporary disc storage.
+        OPEN (F, STATUS='SCRATCH')   !Temporary disc storage.

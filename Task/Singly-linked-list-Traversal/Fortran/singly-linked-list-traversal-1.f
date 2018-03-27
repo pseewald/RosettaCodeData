@@ -1,4 +1,4 @@
-subroutine traversal(list,proc)
+subroutine traversal(list, proc)
    type(node), target    :: list
    type(node), pointer   :: current
    interface
@@ -7,7 +7,7 @@ subroutine traversal(list,proc)
       end subroutine proc
    end interface
    current => list
-   do while ( associated(current) )
+   do while (associated(current))
       call proc(current%data)
       current => current%next
    end do

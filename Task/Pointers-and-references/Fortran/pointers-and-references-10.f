@@ -1,6 +1,6 @@
 type intpointer
-  integer, pointer :: p
+   integer, pointer :: p
 end type intpointer
 
 !...
-  type(intpointer), dimension(100)  :: parray
+type(intpointer), dimension(100)  :: parray

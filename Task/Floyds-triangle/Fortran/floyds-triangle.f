@@ -29,35 +29,34 @@
 !
 !Compilation finished at Tue May 21 22:55:08
 
-
 program p
-  integer, dimension(2) :: examples = [5, 14]
-  integer :: i
-  do i=1, size(examples)
-    call floyd(examples(i))
-    write(6, '(/)')
-  end do
+   integer, dimension(2) :: examples = [5, 14]
+   integer :: i
+   do i = 1, size(examples)
+      call floyd(examples(i))
+      write (6, '(/)')
+   end do
 
 contains
 
-  subroutine floyd(rows)
-    integer, intent(in) :: rows
-    integer :: n, i, j, k
-    integer, dimension(60) :: L
-    character(len=504) :: fmt
-    n = (rows*(rows+1))/2 ! Gauss's formula
-    do i=1,rows ! compute format of final row
-      L(i) = 2+int(log10(real(n-rows+i)))
-    end do
-    k = 0
-    do i=1,rows
-      do j=1,i
-        k = k+1
-        write(fmt,'(a2,i1,a1)')'(i',L(j),')'
-        write(6,fmt,advance='no') k
-      enddo
-      write(6,*) ''
-    end do
-  end subroutine floyd
+   subroutine floyd(rows)
+      integer, intent(in) :: rows
+      integer :: n, i, j, k
+      integer, dimension(60) :: L
+      character(len=504) :: fmt
+      n = (rows*(rows + 1))/2 ! Gauss's formula
+      do i = 1, rows ! compute format of final row
+         L(i) = 2 + int(log10(real(n - rows + i)))
+      end do
+      k = 0
+      do i = 1, rows
+         do j = 1, i
+            k = k + 1
+            write (fmt, '(a2,i1,a1)') '(i', L(j), ')'
+            write (6, fmt, advance='no') k
+         enddo
+         write (6, *) ''
+      end do
+   end subroutine floyd
 
 end program p

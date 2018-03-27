@@ -31,59 +31,59 @@
 !Compilation finished at Fri Jun  6 15:40:18
 
 program nth
-  implicit none
-  logical :: need
-  integer :: here, there, n, i, iostat
-  read(5,*,iostat=iostat) here, there
-  if (iostat .ne. 0) then
-     write(6,*)'such bad input never before seen.'
-     write(6,*)'I AYE EYE QUIT!'
-     call exit(1)
-  end if
-  need = .false.
-  n = abs(there - here) + 1
-  i = 0
-  do while (0 /= mod(3+mod(here-i, 3), 3))
-     write(6,'(a22)',advance='no') ''
-     i = i+1
-  end do
-  do i = here, there, sign(1, there-here)
-     write(6,'(a22)',advance='no') ordinate(i)
-     if (2 /= mod(i,3)) then
-        need = .true.
-     else
-        write(6,'(a)')''
-        need = .false.
-     end if
-  end do
-  if (need) write(6,'(a)')''
+   implicit none
+   logical :: need
+   integer :: here, there, n, i, iostat
+   read (5, *, iostat=iostat) here, there
+   if (iostat .ne. 0) then
+      write (6, *) 'such bad input never before seen.'
+      write (6, *) 'I AYE EYE QUIT!'
+      call exit(1)
+   end if
+   need = .false.
+   n = abs(there - here) + 1
+   i = 0
+   do while (0 /= mod(3 + mod(here - i, 3), 3))
+      write (6, '(a22)', advance='no') ''
+      i = i + 1
+   end do
+   do i = here, there, sign(1, there - here)
+      write (6, '(a22)', advance='no') ordinate(i)
+      if (2 /= mod(i, 3)) then
+         need = .true.
+      else
+         write (6, '(a)') ''
+         need = .false.
+      end if
+   end do
+   if (need) write (6, '(a)') ''
 
 contains
 
-  character(len=22) function ordinate(n)
-    character(len=19) :: a
-    character(len=20), parameter :: &
-         &a09 =   "thstndrdthththththth",&
-         &ateen = "thththththththththth"
-    integer :: ones, tens, ones_index
-    integer, intent(in) :: n
-    write(a,'(i19)') n
-    ones = mod(n,10)
-    tens = mod(n,100)
-    ones_index = ones*2+1
-    if (n < 1000) then
-       if ((10 .le. tens) .and. (tens .lt. 20)) then
-          ordinate = a // "'" // ateen(ones_index:ones_index+1)
-       else
-          ordinate = a // "'" // a09(ones_index:ones_index+1)
-       end if
-    else
-       if ((10 .le. tens) .and. (tens .lt. 20)) then
-          ordinate = a // ateen(ones_index:ones_index+1)
-       else
-          ordinate = a // a09(ones_index:ones_index+1)
-       end if
-    end if
-  end function ordinate
+   character(len=22) function ordinate(n)
+      character(len=19) :: a
+      character(len=20), parameter :: &
+           &a09 = "thstndrdthththththth",&
+           &ateen = "thththththththththth"
+      integer :: ones, tens, ones_index
+      integer, intent(in) :: n
+      write (a, '(i19)') n
+      ones = mod(n, 10)
+      tens = mod(n, 100)
+      ones_index = ones*2 + 1
+      if (n < 1000) then
+         if ((10 .le. tens) .and. (tens .lt. 20)) then
+            ordinate = a//"'"//ateen(ones_index:ones_index + 1)
+         else
+            ordinate = a//"'"//a09(ones_index:ones_index + 1)
+         end if
+      else
+         if ((10 .le. tens) .and. (tens .lt. 20)) then
+            ordinate = a//ateen(ones_index:ones_index + 1)
+         else
+            ordinate = a//a09(ones_index:ones_index + 1)
+         end if
+      end if
+   end function ordinate
 
 end program nth

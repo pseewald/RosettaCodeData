@@ -5,7 +5,7 @@ module accuracy_module
    implicit none
    integer, parameter, public :: rdp = kind(1.d0)
    ! constants
-   real(rdp), parameter :: pi=3.141592653589793238462643383279502884197_rdp
+   real(rdp), parameter :: pi = 3.141592653589793238462643383279502884197_rdp
 end module accuracy_module
 
 !-----------------------------------------------------------------------
@@ -23,14 +23,14 @@ module typedefs_module
    ! abstract derived type
    type, abstract :: TShape
       real(rdp) :: area
-      character(len=:),allocatable :: name
+      character(len=:), allocatable :: name
    contains
       ! deferred method i.e. abstract method =  must be overridden in extended type
-      procedure(calculate_area), deferred,pass :: calculate_area
+      procedure(calculate_area), deferred, pass :: calculate_area
    end type TShape
    ! just declaration of the abstract method/procedure for TShape type
    abstract interface
-      function  calculate_area(this)
+      function calculate_area(this)
          use accuracy_module
          import TShape !imports TShape type from host scoping unit and makes it accessible here
          implicit none
@@ -42,7 +42,7 @@ module typedefs_module
 
    ! auxiliary derived type
    type TPoint
-      real(rdp) :: x,y
+      real(rdp) :: x, y
    end type TPoint
 
    ! extended derived type
@@ -58,7 +58,7 @@ module typedefs_module
 
    ! extended derived type
    type, extends(TShape) :: TRectangle
-      type(TPoint) :: A,B,C,D
+      type(TPoint) :: A, B, C, D
    contains
       procedure, pass :: calculate_area => calculate_rectangle_area
       final :: finalize_rectangle
@@ -71,31 +71,31 @@ module typedefs_module
       final :: finalize_square
    end type TSquare
 
- contains
+contains
 
    ! finalization subroutines for each type
    ! They called recursively, i.e. finalize_rectangle
    ! will be called after finalize_square subroutine
    subroutine finalize_circle(x)
       type(TCircle), intent(inout) :: x
-      write(*,*) "Deleting TCircle object"
+      write (*, *) "Deleting TCircle object"
    end subroutine finalize_circle
 
    subroutine finalize_rectangle(x)
       type(TRectangle), intent(inout) :: x
-      write(*,*) "Deleting also TRectangle object"
+      write (*, *) "Deleting also TRectangle object"
    end subroutine finalize_rectangle
 
    subroutine finalize_square(x)
       type(TSquare), intent(inout) :: x
-      write(*,*) "Deleting TSquare object"
+      write (*, *) "Deleting TSquare object"
    end subroutine finalize_square
 
    function calculate_circle_area(this)
       implicit none
       class(TCircle) :: this
       real(rdp) :: calculate_circle_area
-      this%area = pi * this%radius**2
+      this%area = pi*this%radius**2
       calculate_circle_area = this%area
    end function calculate_circle_area
 
@@ -117,12 +117,12 @@ module typedefs_module
       calculate_square_area = this%area
    end function calculate_square_area
 
-   function  get_circle_diameter(this)
+   function get_circle_diameter(this)
       implicit none
       class(TCircle) :: this
       real(rdp) :: get_circle_diameter
-      this % diameter = 2.0_rdp * this % radius
-      get_circle_diameter = this % diameter
+      this%diameter = 2.0_rdp*this%radius
+      get_circle_diameter = this%diameter
    end function get_circle_diameter
 
 end module typedefs_module
@@ -130,7 +130,7 @@ end module typedefs_module
 !-----------------------------------------------------------------------
 !Main program
 !-----------------------------------------------------------------------
-program    rosetta_class
+program rosetta_class
    use accuracy_module
    use typedefs_module
    implicit none
@@ -138,16 +138,16 @@ program    rosetta_class
    ! we need this subroutine in order to show the finalization
    call test_types()
 
- contains
+contains
 
    subroutine test_types()
       implicit none
       ! declare object of type TPoint
       type(TPoint), target :: point
       ! declare object of type TCircle
-      type(TCircle),target :: circle
+      type(TCircle), target :: circle
       ! declare object of type TSquare
-      type(TSquare),target :: square
+      type(TSquare), target :: square
 
       ! declare pointers
       class(TPoint), pointer :: ppo
@@ -155,24 +155,24 @@ program    rosetta_class
       class(TSquare), pointer :: psq
 
       !constructor
-      point = TPoint(5.d0,5.d0)
+      point = TPoint(5.d0, 5.d0)
       ppo => point
-      write(*,*) "x=",point%x,"y=",point%y
+      write (*, *) "x=", point%x, "y=", point%y
 
       pci => circle
 
-      pci % radius = 1
-      write(*,*) pci % radius
+      pci%radius = 1
+      write (*, *) pci%radius
       ! write(*,*) pci % diameter !No,it is a PRIVATE component
-      write(*,*) pci % get_circle_diameter()
-      write(*,*) pci % calculate_area()
-      write(*,*) pci % area
+      write (*, *) pci%get_circle_diameter()
+      write (*, *) pci%calculate_area()
+      write (*, *) pci%area
 
       psq => square
 
-      write(*,*) psq % area
-      write(*,*) psq % calculate_area()
-      write(*,*) psq % area
+      write (*, *) psq%area
+      write (*, *) psq%calculate_area()
+      write (*, *) psq%area
    end subroutine test_types
 
 end program rosetta_class

@@ -1,1 +1,1 @@
-integer :: a (10)
+integer :: a(10)

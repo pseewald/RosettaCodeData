@@ -37,7 +37,7 @@ module dll_module
 
    ! interface to linux API
    interface
-      function dlopen(filename,mode) bind(c,name="dlopen")
+      function dlopen(filename, mode) bind(c, name="dlopen")
          ! void *dlopen(const char *filename, int mode);
          use iso_c_binding
          implicit none
@@ -46,7 +46,7 @@ module dll_module
          integer(c_int), value :: mode
       end function
 
-      function dlsym(handle,name) bind(c,name="dlsym")
+      function dlsym(handle, name) bind(c, name="dlsym")
          ! void *dlsym(void *handle, const char *name);
          use iso_c_binding
          implicit none
@@ -55,7 +55,7 @@ module dll_module
          character(c_char), intent(in) :: name(*)
       end function
 
-      function dlclose(handle) bind(c,name="dlclose")
+      function dlclose(handle) bind(c, name="dlclose")
          ! int dlclose(void *handle);
          use iso_c_binding
          implicit none
@@ -66,48 +66,47 @@ module dll_module
 
 contains
 
-
    !-----------------------------------------------------------------------
    !Subroutine init_dll
    !-----------------------------------------------------------------------
    subroutine init_dll(dll)
       implicit none
       type(dll_type), intent(inout) :: dll
-      dll % fileaddr = 0
-      dll % fileaddrx = c_null_ptr
-      dll % procaddr = c_null_funptr
-      dll % filename = " "
-      dll % procname = " "
+      dll%fileaddr = 0
+      dll%fileaddrx = c_null_ptr
+      dll%procaddr = c_null_funptr
+      dll%filename = " "
+      dll%procname = " "
    end subroutine init_dll
 
    !-----------------------------------------------------------------------
    !Subroutine init_os_type
    !-----------------------------------------------------------------------
-   subroutine init_os_type(os_id,os)
+   subroutine init_os_type(os_id, os)
       implicit none
       integer, intent(in) :: os_id
       type(os_type), intent(inout) :: os
 
       select case (os_id)
-       case (1) ! Linux
+      case (1) ! Linux
 
-         os % endian = 'big_endian'
-         os % newline = achar(10)
-         os % os_desc = 'Linux'
-         os % pathsep = '/'
-         os % swchar = '-'
-         os % unfform = 'unformatted'
+         os%endian = 'big_endian'
+         os%newline = achar(10)
+         os%os_desc = 'Linux'
+         os%pathsep = '/'
+         os%swchar = '-'
+         os%unfform = 'unformatted'
 
-       case (2) ! MacOS
+      case (2) ! MacOS
 
-         os % endian = 'big_endian'
-         os % newline = achar(10)
-         os % os_desc = 'MacOS'
-         os % pathsep = '/'
-         os % swchar = '-'
-         os % unfform = 'unformatted'
+         os%endian = 'big_endian'
+         os%newline = achar(10)
+         os%os_desc = 'MacOS'
+         os%pathsep = '/'
+         os%swchar = '-'
+         os%unfform = 'unformatted'
 
-       case default
+      case default
 
       end select
 
@@ -116,48 +115,47 @@ contains
    !-----------------------------------------------------------------------
    !Subroutine load_dll
    !-----------------------------------------------------------------------
-   subroutine load_dll (os, dll, errstat, errmsg )
+   subroutine load_dll(os, dll, errstat, errmsg)
       ! this subroutine is used to dynamically load a dll.
 
+      type(os_type), intent(in) :: os
+      type(dll_type), intent(inout) :: dll
+      integer, intent(out) :: errstat
+      character(*), intent(out) :: errmsg
 
-      type (os_type), intent(in) :: os
-      type (dll_type), intent(inout) :: dll
-      integer, intent( out) :: errstat
-      character(*), intent( out) :: errmsg
-
-      integer(c_int), parameter :: rtld_lazy=1
-      integer(c_int), parameter :: rtld_now=2
-      integer(c_int), parameter :: rtld_global=256
-      integer(c_int), parameter :: rtld_local=0
+      integer(c_int), parameter :: rtld_lazy = 1
+      integer(c_int), parameter :: rtld_now = 2
+      integer(c_int), parameter :: rtld_global = 256
+      integer(c_int), parameter :: rtld_local = 0
 
       errstat = errid_none
       errmsg = ''
 
       select case (os%os_desc)
-       case ("Linux","MacOS")
+      case ("Linux", "MacOS")
          ! load the dll and get the file address:
-         dll%fileaddrx = dlopen( trim(dll%filename)//c_null_char, rtld_lazy )
-         if( .not. c_associated(dll%fileaddrx) ) then
+         dll%fileaddrx = dlopen(trim(dll%filename)//c_null_char, rtld_lazy)
+         if (.not. c_associated(dll%fileaddrx)) then
             errstat = errid_fatal
-            write(errmsg,'(i2)') bits_in_addr
+            write (errmsg, '(i2)') bits_in_addr
             errmsg = 'the dynamic library '//trim(dll%filename)//' could not be loaded. check that the file '// &
-            'exists in the specified location and that it is compiled for '//trim(errmsg)//'-bit systems.'
+                     'exists in the specified location and that it is compiled for '//trim(errmsg)//'-bit systems.'
             return
          end if
 
          ! get the procedure address:
-         dll%procaddr = dlsym( dll%fileaddrx, trim(dll%procname)//c_null_char )
-         if(.not. c_associated(dll%procaddr)) then
+         dll%procaddr = dlsym(dll%fileaddrx, trim(dll%procname)//c_null_char)
+         if (.not. c_associated(dll%procaddr)) then
             errstat = errid_fatal
             errmsg = 'the procedure '//trim(dll%procname)//' in file '//trim(dll%filename)//' could not be loaded.'
             return
          end if
 
-       case ("Windows")
+      case ("Windows")
          errstat = errid_fatal
          errmsg = ' load_dll not implemented for '//trim(os%os_desc)
 
-       case default
+      case default
          errstat = errid_fatal
          errmsg = ' load_dll not implemented for '//trim(os%os_desc)
       end select
@@ -167,13 +165,13 @@ contains
    !-----------------------------------------------------------------------
    !Subroutine free_dll
    !-----------------------------------------------------------------------
-   subroutine free_dll (os, dll, errstat, errmsg )
+   subroutine free_dll(os, dll, errstat, errmsg)
 
       ! this subroutine is used to free a dynamically loaded dll
-      type (os_type), intent(in) :: os
-      type (dll_type), intent(inout) :: dll
-      integer, intent( out) :: errstat
-      character(*), intent( out) :: errmsg
+      type(os_type), intent(in) :: os
+      type(dll_type), intent(inout) :: dll
+      integer, intent(out) :: errstat
+      character(*), intent(out) :: errmsg
 
       integer(c_int) :: success
 
@@ -181,11 +179,11 @@ contains
       errmsg = ''
 
       select case (os%os_desc)
-       case ("Linux","MacOS")
+      case ("Linux", "MacOS")
 
          ! close the library:
-         success = dlclose( dll%fileaddrx )
-         if ( success /= 0 ) then
+         success = dlclose(dll%fileaddrx)
+         if (success /= 0) then
             errstat = errid_fatal
             errmsg = 'the dynamic library could not be freed.'
             return
@@ -194,12 +192,12 @@ contains
             errmsg = ''
          end if
 
-       case ("Windows")
+      case ("Windows")
 
          errstat = errid_fatal
          errmsg = ' free_dll not implemented for '//trim(os%os_desc)
 
-       case default
+      case default
          errstat = errid_fatal
          errmsg = ' free_dll not implemented for '//trim(os%os_desc)
       end select
@@ -207,8 +205,6 @@ contains
       return
    end subroutine free_dll
 end module dll_module
-
-
 
 !-----------------------------------------------------------------------
 !Main program
@@ -220,10 +216,10 @@ program test_load_dll
 
    ! interface to our shared lib
    abstract interface
-      function add_n(a,b)
+      function add_n(a, b)
          use, intrinsic :: iso_c_binding
          implicit none
-         real(c_double), intent(in) :: a,b
+         real(c_double), intent(in) :: a, b
          real(c_double) :: add_n
       end function add_n
    end interface
@@ -235,24 +231,24 @@ program test_load_dll
    type(c_funptr) :: cfun
    procedure(add_n), pointer :: fproc
 
-   call init_os_type(1,os)
+   call init_os_type(1, os)
    call init_dll(dll)
 
-   dll%filename="/full_path_to/shared_lib.so"
+   dll%filename = "/full_path_to/shared_lib.so"
    ! name of the procedure in shared_lib
-   dll%procname="add_n"
+   dll%procname = "add_n"
 
-   write(*,*) "address: ", dll%procaddr
+   write (*, *) "address: ", dll%procaddr
 
-   call load_dll(os, dll, errstat, errmsg )
-   write(*,*)"load_dll: errstat=", errstat
-   write(*,*) "address: ", dll%procaddr
+   call load_dll(os, dll, errstat, errmsg)
+   write (*, *) "load_dll: errstat=", errstat
+   write (*, *) "address: ", dll%procaddr
 
-   call c_f_procpointer(dll%procaddr,fproc)
+   call c_f_procpointer(dll%procaddr, fproc)
 
-   write(*,*) "add_n(2,5)=",fproc(2.d0,5.d0)
+   write (*, *) "add_n(2,5)=", fproc(2.d0, 5.d0)
 
-   call free_dll (os, dll, errstat, errmsg )
-   write(*,*)"free_dll: errstat=", errstat
+   call free_dll(os, dll, errstat, errmsg)
+   write (*, *) "free_dll: errstat=", errstat
 
 end program test_load_dll

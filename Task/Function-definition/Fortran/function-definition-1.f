@@ -1,1 +1,1 @@
-     XMULTF(X,Y)=X*Y
+     XMULTF(X, Y) = X*Y
