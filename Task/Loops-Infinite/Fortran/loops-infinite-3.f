@@ -1,2 +1,2 @@
-10 WRITE(*,*) "SPAM"
-   GOTO 10
+10 WRITE (*, *) "SPAM"
+GOTO 10
