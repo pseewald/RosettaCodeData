@@ -6,7 +6,7 @@ PROGRAM DATE
    CHARACTER(9) :: month, dayname
 
    CALL DATE_AND_TIME(VALUES=dateinfo)
-   SELECT CASE (dateinfo (2))
+   SELECT CASE (dateinfo(2))
    CASE (1)
       month = "January"
    CASE (2)

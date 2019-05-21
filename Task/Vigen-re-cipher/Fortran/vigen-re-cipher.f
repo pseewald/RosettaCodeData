@@ -22,9 +22,9 @@ contains
 
       outtxt = ""
       do i = 1, len(trim(intxt))
-         select case (intxt (i:i))
+         select case (intxt(i:i))
          case ("A":"Z", "a":"z")
-            select case (intxt (i:i))
+            select case (intxt(i:i))
             case ("a":"z")
                chrn = iachar(intxt(i:i)) - 32
 

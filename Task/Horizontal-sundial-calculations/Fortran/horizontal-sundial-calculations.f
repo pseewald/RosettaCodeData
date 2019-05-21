@@ -13,7 +13,7 @@ program SunDial
    print *, "Enter legal meridian"
    read *, ref
 
-   print*
+   print *
 
    slat = sin(dr(lat))
    write (*, '(A,1F6.3)') "sine of latitude: ", slat

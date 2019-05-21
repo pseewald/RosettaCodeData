@@ -45,7 +45,7 @@ contains
 
       output = input
       do i = 1, len_trim(output)
-         select case (output (i:i))
+         select case (output(i:i))
          case ('A':'M', 'a':'m')
             output(i:i) = char(ichar(output(i:i)) + 13)
          case ('N':'Z', 'n':'z')

@@ -59,7 +59,7 @@ contains
       buffer = cells   ! Store current status
       do i = 1, size(cells, 1) - 2
          do j = 1, size(cells, 2) - 2
-            select case (buffer (i, j))
+            select case (buffer(i, j))
             case (" ")
                ! no Change
 

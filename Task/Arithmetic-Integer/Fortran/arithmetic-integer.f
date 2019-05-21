@@ -7,7 +7,7 @@
  PRINT *, '   A * B = ', (A*B)
  PRINT *, '   A / B = ', (A/B)
  PRINT *, 'MOD(A,B) = ', MOD(A, B)
- PRINT*
+ PRINT *
  PRINT *, 'Even though you did not ask, ',
  +'exponentiation is an intrinsic op in Fortran, so...'
  PRINT *, '  A ** B = ', (A**B)

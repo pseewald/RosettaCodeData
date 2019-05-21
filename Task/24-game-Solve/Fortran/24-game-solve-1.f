@@ -54,7 +54,7 @@ contains
    pure real function op(x, c, y)
       integer, intent(in) :: c
       real, intent(in)    :: x, y
-      select case (ops (c))
+      select case (ops(c))
       case ('+')
          op = x + y
       case ('-')

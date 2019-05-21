@@ -56,7 +56,7 @@ contains
       print *, amsg
       do i = 1, size(a, 1)
          select type (a)
-         type is (real (8)); print'(100f8.2)', a(i, :)
+         type is (real(8)); print'(100f8.2)', a(i, :)
          type is (integer); print'(100i8  )', a(i, :)
          end select
       end do

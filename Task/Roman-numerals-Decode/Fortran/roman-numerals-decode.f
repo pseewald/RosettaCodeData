@@ -12,7 +12,7 @@ contains
       arabic = 0
       lastval = 0
       do i = len(roman), 1, -1
-         select case (roman (i:i))
+         select case (roman(i:i))
          case ('M', 'm')
             n = 1000
          case ('D', 'd')

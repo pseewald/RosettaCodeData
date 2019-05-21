@@ -143,7 +143,7 @@ program main
    x = fromString("[[1], 2, [[3,4], 5], [[[]]], [[[6]]], 7, 8, []]")
    write (*, "(a)", advance="no") "input   : "
    call show(x)
-   print*
+   print *
    write (*, "(a)", advance="no") "flatten : ["
    write (*, "(*(i0,:,:', '))", advance="no") flatten(x)
    print *, "]"

@@ -7,7 +7,7 @@
          L = 1                !Output finger. The starting [ is already in place.
          LIVE = .FALSE.        !A list element is not in progress.
          DO I = 2, LEN(LIST)        !Scan the characters of the list.
-            SELECT CASE (LIST (I:I))        !Consider one.
+            SELECT CASE (LIST(I:I))        !Consider one.
             CASE ("[", "]", ",", " ")        !Punctuation or spacing?
                IF (LIVE) THEN                !Yes. If previously in an element,
                   L = L + 1                        !Advance the finger,

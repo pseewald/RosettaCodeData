@@ -17,7 +17,7 @@ contains
       integer :: i
 
       do i = 1, len(text)
-         select case (text (i:i))
+         select case (text(i:i))
          case ('A':'Z')
             text(i:i) = achar(modulo(iachar(text(i:i)) - 65 + key, 26) + 65)
          case ('a':'z')
@@ -31,7 +31,7 @@ contains
       integer :: i
 
       do i = 1, len(text)
-         select case (text (i:i))
+         select case (text(i:i))
          case ('A':'Z')
             text(i:i) = achar(modulo(iachar(text(i:i)) - 65 - key, 26) + 65)
          case ('a':'z')

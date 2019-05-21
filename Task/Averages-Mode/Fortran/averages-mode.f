@@ -41,7 +41,7 @@ contains
 
       if (present(ok)) ok = .false.
 
-      select case (size (a, 1))
+      select case (size(a, 1))
       case (0)  ! no mode... ok is false
          return
       case (1)

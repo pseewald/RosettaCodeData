@@ -105,7 +105,7 @@ contains
       integer     :: i
       write (*, "(*(g0,'-> ',g0,:,', '))", advance="no") &
          (this%sym(i), trim(this%code(i)), i=1, size(this%sym))
-      print*
+      print *
    end subroutine
 
    function create(letter, freq) result(this)
@@ -144,5 +144,5 @@ program main
       end do
       write (*, "(a,'|')", advance="no") trim(x%code(k))
    end do
-   print*
+   print *
 end program

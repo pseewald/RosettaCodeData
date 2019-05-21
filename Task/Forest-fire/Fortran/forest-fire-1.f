@@ -66,7 +66,7 @@ contains
 
       do i = 1, f%width
          do j = 1, f%height
-            select case (get (f, i, j))
+            select case (get(f, i, j))
             case (burning)
                call set(f, i, j, empty)
             case (empty)
@@ -166,7 +166,7 @@ contains
 
       do j = 1, f%height
          do i = 1, f%width
-            select case (get (f, i, j))
+            select case (get(f, i, j))
             case (empty)
                write (*, '(A)', advance='no') '.'
             case (tree)

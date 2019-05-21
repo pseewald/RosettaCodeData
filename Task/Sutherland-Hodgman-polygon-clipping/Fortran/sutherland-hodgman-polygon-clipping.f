@@ -181,8 +181,8 @@ program main
 
    ! load the module for S-H algorithm
    use SutherlandHodgmanUtil, only: polygon, &
-      sutherlandHodgman, &
-      edgeClipping
+                                    sutherlandHodgman, &
+                                    edgeClipping
 
    type(polygon) :: p1, p2, res
    integer :: c, n
