@@ -11,7 +11,7 @@
             ITEMP1 = ITEMP0
             ITEMP0 = ITEMP1 + ITEMP2
 1           CONTINUE
-         ELSE
+            ELSE
             ITEMP1 = 1
             ITEMP0 = 0
             DO 2 I = -1, N, -1
@@ -19,6 +19,6 @@
                ITEMP1 = ITEMP0
                ITEMP0 = ITEMP2 - ITEMP1
 2              CONTINUE
-            END IF
-            IFIB = ITEMP0
-         END
+               END IF
+               IFIB = ITEMP0
+            END

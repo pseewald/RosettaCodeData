@@ -29,7 +29,7 @@
                     write (6, fmt='(a1)', advance='no') '.'
                     dot = .true.
                  end if
-                 flush(6)
+                 flush (6)
                  nr = 10*(r - n*t)
                  n = 10*((3*q + r)/t - n)
                  q = 10*q

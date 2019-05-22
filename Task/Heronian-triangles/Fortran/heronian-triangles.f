@@ -1,5 +1,5 @@
       MODULE GREEK MATHEMATICIANS        !Two millenia back and more.
-   CONTAINS
+      CONTAINS
       INTEGER FUNCTION GCD(I, J)        !Greatest common divisor.
          INTEGER I, J        !Of these two integers.
          INTEGER N, M, R        !Workers.
