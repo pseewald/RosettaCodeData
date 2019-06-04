@@ -5,12 +5,12 @@
 typedef struct {
 	int m, n;
 	double ** v;
-} mat_t, mat;
+} mat_t, *mat;
 
 mat matrix_new(int m, int n)
 {
 	mat x = malloc(sizeof(mat_t));
-	x->v = malloc(sizeof(double) * m);
+	x->v = malloc(sizeof(double*) * m);
 	x->v[0] = calloc(sizeof(double), m * n);
 	for (int i = 0; i < m; i++)
 		x->v[i] = x->v[0] + n * i;
@@ -37,7 +37,7 @@ void matrix_transpose(mat m)
 	}
 }
 
-mat matrix_copy(int n;double a[][n], int m, int n)
+mat matrix_copy(int n, double a[][n], int m)
 {
 	mat x = matrix_new(m, n);
 	for (int i = 0; i < m; i++)
@@ -174,7 +174,7 @@ double in[][3] = {
 int main()
 {
 	mat R, Q;
-	mat x = matrix_copy(in, 5, 3);
+	mat x = matrix_copy(3, in, 5);
 	householder(x, &R, &Q);
 
 	puts("Q"); matrix_show(Q);

@@ -18,7 +18,7 @@ program concurrency
    end interface
 
    ! Use OpenMP to create a team of threads
-!$OMP   parallel do private(i,h)
+   !$omp parallel do private(i,h)
    do i = 1, 20
       ! First time through the master thread output the number of threads
       ! in the team
@@ -29,7 +29,7 @@ program concurrency
       ! Randomize the order
       call random_number(h)
 
-!$OMP      critical
+      !$omp critical
       if (h < one_third) then
          write (*, '(a)') str1
       else if (h < two_thirds) then
@@ -37,8 +37,8 @@ program concurrency
       else
          write (*, '(a)') str3
       end if
-!$OMP      end critical
+      !$omp end critical
    end do
-!$OMP   end parallel do
+   !$omp end parallel do
 
 end program concurrency

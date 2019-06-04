@@ -1,2 +1,6 @@
+import Data.MemoTrie
 fib :: Integer -> Integer
-fib n = fst $ foldl (\(a, b) _ -> (b, a + b)) (0, 1) [1 .. n]
+fib = memo f where
+   f 0 = 0
+   f 1 = 1
+   f n = fib (n-1) + fib (n-2)

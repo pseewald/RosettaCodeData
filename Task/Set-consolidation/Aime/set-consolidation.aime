@@ -2,26 +2,17 @@ void
 display(list l)
 {
     integer i;
-    text s;
+    record r;
 
-    i = -l_length(l);
-    while (i) {
-        record r;
+    for (i, r in l) {
         text u, v;
 
-        o_text(s);
-        s = ", ";
-        o_text("{");
-        r = l_q_record(l, i);
-        if (r_first(r, u)) {
-            do {
-                o_text(v);
-                v = ", ";
-                o_text(u);
-            } while (r_greater(r, u, u));
+        o_text(i ? ", {" : "{");
+        for (u in r) {
+            o_(v, u);
+            v = ", ";
         }
         o_text("}");
-        i += 1;
     }
 
     o_text("\n");
@@ -30,89 +21,47 @@ display(list l)
 integer
 intersect(record r, record u)
 {
-    integer a;
-    text s;
-
-    a = 0;
-    if (r_first(r, s)) {
-        do {
-            if (r_key(u, s)) {
-                a = 1;
-                break;
-            }
-        } while (r_greater(r, s, s));
-    }
-
-    return a;
+    trap_q(r_vcall, r, r_put, 1, record().copy(u), 0);
 }
 
 void
 merge(record u, record r)
 {
-    text s;
-
-    if (r_first(r, s)) {
-        do {
-            r_add(u, s, r_query(r, s));
-        } while (r_greater(r, s, s));
-    }
+    r.wcall(r_add, 1, 2, u);
 }
 
 list
 consolidate(list l)
 {
     integer i;
+    record r;
 
-    i = -l_length(l);
-    while (i) {
+    for (i, r in l) {
         integer j;
-        record r;
 
-        r = l_q_record(l, i);
-        i += 1;
-        j = i;
-        while (j) {
+        j = i - ~l;
+        while (j += 1) {
             record u;
 
-            u = l_q_record(l, j);
-            j += 1;
+            u = l[j];
             if (intersect(r, u)) {
                 merge(u, r);
-                l_delete(l, i - 1);
+                l.delete(i);
+                i -= 1;
                 break;
             }
         }
     }
 
-    return l;
-}
-
-list
-L(...)
-{
-    integer i;
-    list l;
-
-    i = -count();
-    while (i) {
-        l_link(l, -1, $i);
-        i += 1;
-    }
-
-    return l;
+    l;
 }
 
 record
 R(...)
 {
-    integer i;
     record r;
 
-    i = -count();
-    while (i) {
-        r_p_integer(r, $i, 0);
-        i += 1;
-    }
+    ucall(r_put, 1, r, 0);
 
     return r;
 }
@@ -120,11 +69,11 @@ R(...)
 integer
 main(void)
 {
-    display(consolidate(L(R("A", "B"), R("C", "D"))));
-    display(consolidate(L(R("A", "B"), R("B", "D"))));
-    display(consolidate(L(R("A", "B"), R("C", "D"), R("D", "B"))));
-    display(consolidate(L(R("H", "I", "K"), R("A", "B"), R("C", "D"),
-                          R("D", "B"), R("F", "G", "K"))));
+    display(consolidate(list(R("A", "B"), R("C", "D"))));
+    display(consolidate(list(R("A", "B"), R("B", "D"))));
+    display(consolidate(list(R("A", "B"), R("C", "D"), R("D", "B"))));
+    display(consolidate(list(R("H", "I", "K"), R("A", "B"), R("C", "D"),
+                             R("D", "B"), R("F", "G", "K"))));
 
-    return 0;
+    0;
 }

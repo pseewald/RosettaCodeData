@@ -1,5 +1,8 @@
-public static boolean isLeapYear(int year){
-    if(year % 100 == 0)
-        return year % 400 == 0;
-    return year % 4 == 0;
+import java.time.Year;
+
+public class IsLeap {
+
+    public static void main(String[] args) {
+        System.out.println(Year.isLeap(2004));
+    }
 }

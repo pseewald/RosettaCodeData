@@ -1,2 +1,9 @@
- *Main> take 10 $ show $ fst $ fibN2 (10^6)
- "1953282128"
+import Data.List (foldl') --'
+
+fib :: Integer -> Integer
+fib n =
+  fst $
+  foldl' --'
+    (\(a, b) _ -> (b, a + b))
+    (0, 1)
+    [1 .. n]

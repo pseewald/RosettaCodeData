@@ -22,11 +22,11 @@ program queens
       end do
       s = 0
       t1 = omp_get_wtime()
-!$OMP         parallel do schedule(dynamic)
+      !$omp parallel do schedule(dynamic)
       do i = 1, k
          b(i) = pqueens(n, a(i, 1), a(i, 2))
       end do
-!$OMP         end parallel do
+      !$omp end parallel do
       t2 = omp_get_wtime()
       print "(I4, I12, F12.3)", n, 2*sum(b(1:k)), t2 - t1
    end do

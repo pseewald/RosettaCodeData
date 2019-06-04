@@ -1,3 +1,3 @@
 sub triple($n) { 3 * $n }
 my &f = &triple ∘ &prefix:<-> ∘ { $^n + 2 };
-say &f(5); # Prints "-21".
+say &f(5); # prints "-21".

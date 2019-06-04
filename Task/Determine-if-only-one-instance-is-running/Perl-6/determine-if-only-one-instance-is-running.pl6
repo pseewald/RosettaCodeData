@@ -20,7 +20,7 @@ if try link($lockpid, $lockfile) {
 }
 else {
     shell "kill -CONT `cat $lockfile` || rm $lockfile";
-    if try link($lockpid, $lockfile) {
+    if try link($lockfile, $lockpid) {
         $havelock = True;
     }
     else {

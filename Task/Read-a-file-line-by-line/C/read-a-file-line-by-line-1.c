@@ -1,14 +1,30 @@
+/*
+ * Read (and write) the standard input file
+ * linie-by-line. This version is for ASCII
+ * encoded text files.
+ */
 #include <stdio.h>
-#include <stdlib.h>
-int main (void)
+
+/*
+ * BUFSIZE is a max size of line plus 1.
+ *
+ * It would be nice to dynamically allocate  bigger buffer for longer lines etc.
+ * - but this example is as simple as possible. Dynamic buffer allocation from
+ * the heap may not be a good idea as it seems, because it can cause memory
+ * segmentation in embeded systems.
+ */
+#define BUFSIZE 1024
+
+int main(void)
 {
-  char buf[256];
-  while (fgets (buf, sizeof(buf), stdin)) {
-    printf("line: %s", buf);
-  }
-  if (ferror(stdin)) {
-    fprintf(stderr,"Oops, error reading stdin\n");
-    abort();
-  }
-  return 0;
+    static char buffer[BUFSIZE];
+
+    /*
+     * Never use gets() instead fgets(), because gets()
+     * is a really unsafe function.
+     */
+    while (fgets(buffer, BUFSIZE, stdin))
+        puts(buffer);
+
+    return 0;
 }

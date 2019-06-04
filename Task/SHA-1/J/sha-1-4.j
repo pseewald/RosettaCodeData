@@ -1,8 +1,5 @@
-words2hex=: '0123456789abcdef' {~ (8#16)&#:
+   text2bits=: (8#2) ,@:#: a. i. ]
+   bits2hex=: '0123456789abcdef' {~ _4 #.\ ,
 
-   words2hex sha1  text2bits 'Rosetta Code'
-48c98f7e
-5a6e736d
-790ab740
-dfc3f51a
-61abe2b5
+   bits2hex sha1 text2bits 'Rosetta Code'
+48c98f7e5a6e736d790ab740dfc3f51a61abe2b5

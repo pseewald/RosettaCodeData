@@ -1,6 +1,12 @@
-(defun primep (n)
-  "Is N prime?"
-  (and (> n 1)
-       (or (= n 2) (oddp n))
-       (loop for i from 3 to (isqrt n) by 2
-	  never (zerop (rem n i)))))
+;; Project : Primality by trial division
+
+(defun prime(n)
+         (setq flag 0)
+         (loop for i from 2 to (- n 1) do
+                 (if (= (mod n i) 0)
+                     (setq flag 1)))
+                 (if (= flag 0)
+                     (format t "~d is a prime number" n)
+                     (format t "~d is not a prime number" n)))
+(prime 7)
+(prime 8)

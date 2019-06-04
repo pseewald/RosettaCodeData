@@ -9,9 +9,9 @@ Starting with:
 :* repeat until the parent converges, (hopefully), to the target.
 
 
-;Related tasks:
-* &nbsp; [[wp:Weasel_program#Weasel_algorithm|Weasel algorithm]].
-* &nbsp; [[wp:Evolutionary algorithm|Evolutionary algorithm]].
+;See also:
+* &nbsp; Wikipedia entry: &nbsp; [[wp:Weasel_program#Weasel_algorithm|Weasel algorithm]].
+* &nbsp; Wikipedia entry: &nbsp; [[wp:Evolutionary algorithm|Evolutionary algorithm]].
 
 <br>
 <small>Note: to aid comparison, try and ensure the variables and functions mentioned in the task description appear in solutions</small>

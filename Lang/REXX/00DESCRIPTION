@@ -8,7 +8,10 @@
 |checking=dynamic
 |parampass=value}}
 {{Wikipedia|REXX}}
+
+
 <cite>REXX (REstructured eXtended eXecutor) is an interpreted programming language which was developed at IBM. &nbsp; It is a structured high-level programming language which was designed to be both easy to learn and easy to read. &nbsp; Both proprietary and open source interpreters for REXX are available on a wide range of computing platforms, and compilers are available for IBM mainframes.</cite>
+
 
 * '''[[wp:ARexx|ARexx]]''' is a classic REXX implementation (with extensions) for the AmigaOS, given in bundle since AmigaOS 2. &nbsp; (Regina REXX has specific support for the extended functions that were introduced in ARexx.) &nbsp; ARexx was written in 1987 by William S. Hawes.
 
@@ -59,7 +62,7 @@
 <br>[Most of the entries were entered mostly from memory and apologies are offered for not knowing more about what wording should be used; the IBM operating systems or Program Products that run REXX are numerous and varied. &nbsp; Their complete (official) names would fill a pageful. &nbsp; Some of the REXXes are no longer sold nor available for downloading or purchase, others are no longer maintained. &nbsp; Naming of names is being avoided (especially those licensed products for sale), and it is hoped that this is seen that no products nor vendors are being endorsed, appraised, or critiqued.] &nbsp; -- [[User:Gerard Schildberger|Gerard Schildberger]] 09:28, 1 July 2012 (UTC)
 
 ===External Links===
-* [http://sourceforge.net/projects/brexx/ Brexx interpreter]
+* [https://github.com/vlachoudis/brexx Brexx interpreter]
 * [http://www.oorexx.org/ Open Object Rexx - www.oorexx.org]
 * [http://www.netrexx.org The NetRexx Programming Language - www.netrexx.org]
 * [http://www.rexxla.org The Rexx Language Association - www.rexxla.org]
@@ -73,3 +76,6 @@
 * [http://publib.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/HCSE2C00/CCONTENTS?SHELF=hcsh2ab0&DN=SC24-6221-00&DT=20090724140455 z/VM V6R1 REXX/VM Reference]
 * [http://publib.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/HCSB3C00/CCONTENTS?SHELF=hcsh2ab0&DN=SC24-6222-00&DT=20090724131829 z/VM V6R1 REXX/VM User's Guide]
 * [http://www.rexxinfo.org/html/rexxinfo1.html#Rexx-Manuals {many references to REXX manuals}]
+
+==Todo==
+[[Reports:Tasks_not_implemented_in_REXX]]

@@ -1,1 +1,3 @@
-say [+] (1 / $_**2 for 1..1000);
+use experimental :cached;
+sub ζ($s) is cached { [\+] 1..* X** -$s }
+say ζ(2)[1000];

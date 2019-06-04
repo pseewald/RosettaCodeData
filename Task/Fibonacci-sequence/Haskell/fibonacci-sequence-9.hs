@@ -1,1 +1,1 @@
-fib = 0 : scanl (+) 1 fib
+fib = 0 : 1 : zipWith (+) fib (tail fib)

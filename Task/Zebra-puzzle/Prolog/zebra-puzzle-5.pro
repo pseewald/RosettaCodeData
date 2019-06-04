@@ -1,45 +1,54 @@
-:- initialization(main).
+:- use_module(library(clpfd)).
 
+zebra :-
+    Nation = [Englishman, Spaniard, Japanese,     Ukrainian,   Norwegian ],
+    Color  = [Red,        Green,    White,        Yellow,      Blue      ],
+    Smoke  = [Oldgold,    Kools,    Chesterfield, Luckystrike, Parliament],
+    Pet    = [Dog,        Snails,   Fox,          Horse,       Zebra     ],
+    Drink  = [Tea,        Coffee,   Milk,         Orangejuice, Water     ],
 
-zebra(X) :-
-    houses(Hs), member(h(_,X,zebra,_,_), Hs)
-  , findall(_, (member(H,Hs), write(H), nl), _), nl
-  , write('the one who keeps zebra: '), write(X), nl
-  .
+    % house numbers 1 to 5
+    Nation ins 1..5,
+    Color  ins 1..5,
+    Smoke  ins 1..5,
+    Pet    ins 1..5,
+    Drink  ins 1..5,
 
+    % the values in each list are exclusive
+    all_different(Nation),
+    all_different(Color),
+    all_different(Smoke),
+    all_different(Pet),
+    all_different(Drink),
 
-houses(Hs) :-
-    Hs = [_,_,_,_,_]                         %  1
-  , H3 = h(_,_,_,milk,_), Hs = [_,_,H3,_,_]  %  9
-  , H1 = h(_,nvg,_,_,_ ), Hs = [H1|_]        % 10
+    % actual constraints
+    Englishman    #= Red,
+    Spaniard      #= Dog,
+    Green         #= Coffee,
+    Ukrainian     #= Tea,
+    Green         #= White + 1,
+    Oldgold       #= Snails,
+    Yellow        #= Kools,
+    Milk          #= 3,
+    Norwegian     #= 1,
+    (Chesterfield #= Fox   - 1 #\/ Chesterfield #= Fox   + 1),
+    (Kools        #= Horse - 1 #\/ Kools        #= Horse + 1),
+    Luckystrike   #= Orangejuice,
+    Japanese      #= Parliament,
+    (Norwegian    #= Blue  - 1 #\/ Norwegian    #= Blue  + 1),
 
-  , maplist( flip(member,Hs),
-       [ h(red,eng,_,_,_)                    %  2
-       , h(_,swe,dog,_,_)                    %  3
-       , h(_,dan,_,tea,_)                    %  4
-       , h(green,_,_,coffe,_)                %  6
-       , h(_,_,birds,_,pm)                   %  7
-       , h(yellow,_,_,_,dh)                  %  8
-       , h(_,_,_,beer,bm)                    % 13
-       , h(_,ger,_,_,pri)                    % 14
-       ])
+    % get solution
+    flatten([Nation, Color, Smoke, Pet, Drink], List), label(List),
 
-  , infix([ h(green,_,_,_,_)
-          , h(white,_,_,_,_) ], Hs)          %  5
-
-  , maplist( flip(nextto,Hs),
-      [ [h(_,_,_,_,bl   ), h(_,_,cats,_,_)]  % 11
-      , [h(_,_,horse,_,_), h(_,_,_,_,dh  )]  % 12
-      , [h(_,nvg,_,_,_  ), h(blue,_,_,_,_)]  % 15
-      , [h(_,_,_,water,_), h(_,_,_,_,bl  )]  % 16
-      ])
-  .
-
-
-flip(F,X,Y) :- call(F,Y,X).
-
-infix(Xs,Ys) :- append(Xs,_,Zs) , append(_,Zs,Ys).
-nextto(P,Xs) :- permutation(P,R), infix(R,Xs).
-
-
-main :- findall(_, (zebra(_), nl), _), halt.
+    % print the answers
+    sort([Englishman-englishman, Spaniard-spaniard, Japanese-japanese,         Ukrainian-ukrainian,     Norwegian-norwegian],   NationNames),
+    sort([Red-red,               Green-green,       White-white,               Yellow-yellow,           Blue-bule],             ColorNames),
+    sort([Oldgold-oldgold,       Kools-kools,       Chesterfield-chesterfield, Luckystrike-luckystrike, Parliament-parliament], SmokeNames),
+    sort([Dog-dog,               Snails-snails,     Fox-fox,                   Horse-horse,             Zebra-zebra],           PetNames),
+    sort([Tea-tea,               Coffee-coffee,     Milk-milk,                 Orangejuice-orangejuice, Water-water],           DrinkNames),
+    Fmt = '~w~16|~w~32|~w~48|~w~64|~w~n',
+    format(Fmt, NationNames),
+    format(Fmt, ColorNames),
+    format(Fmt, SmokeNames),
+    format(Fmt, PetNames),
+    format(Fmt, DrinkNames).

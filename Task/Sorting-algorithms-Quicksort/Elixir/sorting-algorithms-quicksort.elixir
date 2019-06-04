@@ -1,9 +1,7 @@
-defmodule QuickSort do
-  def qsort([]) do
-    []
-  end
-  def qsort([pivot | rest]) do
-    { left, right } = Enum.partition(rest, fn(x) -> x < pivot end)
-    qsort(left) ++ [pivot] ++ qsort(right)
+defmodule Sort do
+  def qsort([]), do: []
+  def qsort([h | t]) do
+    {lesser, greater} = Enum.split_with(t, &(&1 < h))
+    qsort(lesser) ++ [h] ++ qsort(greater)
   end
 end

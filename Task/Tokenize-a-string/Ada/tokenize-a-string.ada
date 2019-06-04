@@ -1,18 +1,17 @@
-with Ada.Strings.Fixed; use Ada.Strings.Fixed;
-with Ada.Text_Io; use Ada.Text_Io;
+with Ada.Text_IO, Ada.Containers.Indefinite_Vectors;
+use  Ada.Text_IO, Ada.Containers;
 
-procedure Parse_Commas is
-   Source_String : String := "Hello,How,Are,You,Today";
-   Index_List : array(Source_String'Range) of Natural;
-   Next_Index : Natural := Index_List'First;
+procedure tokenize is
+  package String_Vector is new Indefinite_Vectors (Natural,String); use String_Vector;
+  s       : String   := "Hello,How,Are,You,Today" & ",";
+  current : Positive := s'First;
+  v       : Vector;
 begin
-   Index_List(Next_Index) := Source_String'First;
-   while Index_List(Next_Index) < Source_String'Last loop
-      Next_Index := Next_Index + 1;
-      Index_List(Next_Index) := 1 + Index(Source_String(Index_List(Next_Index - 1)..Source_String'Last), ",");
-      if Index_List(Next_Index) = 1 then
-         Index_List(Next_Index) := Source_String'Last + 2;
-      end if;
-      Put(Source_String(Index_List(Next_Index - 1)..Index_List(Next_Index)-2) & ".");
+  for i in s'range loop
+    if s (i) = ',' or i = s'last then
+      v.append (s (current .. i-1));
+      current := i + 1;
+    end if;
    end loop;
-end Parse_Commas;
+  for s of v loop put(s & "."); end loop;
+end tokenize;

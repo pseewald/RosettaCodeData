@@ -11,7 +11,7 @@ The&nbsp; n<sup>th</sup> &nbsp;Bernoulli number is expressed as&nbsp; '''B'''<su
 :* &nbsp; suppress the output of values which are equal to zero. (Other than &nbsp; '''B'''<sub>1</sub>&nbsp;, all ''odd''  Bernoulli numbers have a value of zero.)
 :* &nbsp; express the Bernoulli numbers as fractions &nbsp;(most are improper fractions).
 :* &nbsp; the fractions should be reduced.
-:* &nbsp; index each number in some way so that it can be discerned which number is being displayed.
+:* &nbsp; index each number in some way so that it can be discerned which Bernoulli number is being displayed.
 :* &nbsp; align the solidi &nbsp; (<big><b>/</b></big>) &nbsp; if used (extra credit).
 
 
@@ -28,5 +28,5 @@ The Akiyama–Tanigawa algorithm for the "second Bernoulli numbers" as taken fro
 * Sequence [http://oeis.org/A027641 A027641 Numerator of Bernoulli number B_n] on The On-Line Encyclopedia of Integer Sequences.
 * Sequence [http://oeis.org/A027642 A027642 Denominator of Bernoulli number B_n] on The On-Line Encyclopedia of Integer Sequences.
 * Entry [http://mathworld.wolfram.com/BernoulliNumber.html Bernoulli number] on The Eric Weisstein's World of Mathematics (TM).
-* Luschny's [http://luschny.de/math/zeta/The-Bernoulli-Manifesto.html The Bernoulli Manifesto] for a discussion on <math>B_1</math> = -&frac12; vs. +&frac12;.
+* Luschny's [http://luschny.de/math/zeta/The-Bernoulli-Manifesto.html The Bernoulli Manifesto] for a discussion on &nbsp; <big> '''B<sub>1</sub> &nbsp; = &nbsp; -&frac12;''' &nbsp; versus &nbsp; '''+&frac12;'''. </big>
 <br><br>

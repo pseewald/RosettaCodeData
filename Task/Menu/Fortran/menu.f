@@ -4,7 +4,7 @@
 !a=./f && make $a && OMP_NUM_THREADS=2 $a
 !gfortran -std=f2008 -Wall -fopenmp -ffree-form -fall-intrinsics -fimplicit-none f.f08 -o f
 !
-!$./f
+!$ ./f
 ! Choose fairly a tail
 !       1: fee fie
 !       2: huff and puff
@@ -19,7 +19,7 @@
 !^D
 !
 !STOP Unexpected end of file
-!$./f
+!$ ./f
 ! Choose fairly a tail
 !       1: fee fie
 !       2: huff and puff

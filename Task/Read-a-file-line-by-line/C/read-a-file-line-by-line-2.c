@@ -1,35 +1,25 @@
-#include <err.h>	/* err */
-#include <stdio.h>	/* fopen, fgetln, fputs, fwrite */
+// From manpage for "getline"
 
-/*
- * Read a file line by line.
- * http://rosettacode.org/wiki/Read_a_file_line_by_line
- */
-int
-main()
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
 {
-	FILE *f;
-	size_t len;
-	char *line;
+	FILE *stream;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
 
-	f = fopen("foobar.txt", "r");
-	if (f == NULL)
-		err(1, "foobar.txt");
+	stream = fopen("file.txt", "r");
+	if (stream == NULL)
+		exit(EXIT_FAILURE);
 
-	/*
-	 * This loop reads each line.
-	 * Remember that line is not a C string.
-	 * There is no terminating '\0'.
-	 */
-	while (line = fgetln(f, &len)) {
-		/*
-		 * Do something with line.
-		 */
-		fputs("LINE: ", stdout);
-		fwrite(line, len, 1, stdout);
+	while ((read = getline(&line, &len, stream)) != -1) {
+		printf("Retrieved line of length %u :\n", read);
+		printf("%s", line);
 	}
-	if (!feof(f))
-		err(1, "fgetln");
 
-	return 0;
+	free(line);
+	fclose(stream);
+	exit(EXIT_SUCCESS);
 }

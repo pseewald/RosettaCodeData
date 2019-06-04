@@ -31,7 +31,7 @@ void AddToken(stack<Entry_>* stack, const string& token)
 	else
 	{	// it's an operator
 		if (stack->size() < 2)
-			throw exception("Stack underflow");
+			cout<<"Stack underflow";
 		auto rhs = stack->top();
 		Parenthesize(&rhs, token, false);
 		stack->pop();
@@ -58,7 +58,7 @@ string ToInfix(const string& src)
 		}
 	}
 	if (stack.size() != 1)
-		throw exception("Incomplete expression");
+		cout<<"Incomplete expression";
 	return stack.top().expr_;
 }
 

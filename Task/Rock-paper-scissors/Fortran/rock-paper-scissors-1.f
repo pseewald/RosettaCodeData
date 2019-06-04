@@ -3,7 +3,7 @@
 !
 ! EXAMPLE
 !
-!$./f
+!$ ./f
 !rock, paper, scissors?  papier
 !scoring computer choice (r) and your choice (p)
 !rock, paper, scissors?  sizzerz

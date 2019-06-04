@@ -1,22 +1,16 @@
-#import system.
-#import system'dynamic.
+function(acc)
+    = (:n)(acc append:n).
 
-#symbol Function =
-    (:x) [ this append:x ].
+accumulator(n)
+    = function(Variable new(n)).
 
-#class(extension)op
-{
-    #method accumulator &of:func
-        = Variable new:self mix &into:func.
-}
-
-#symbol program =
+public program
 [
-    #var x := 1 accumulator &of:Function.
+    var x := accumulator(1).
 
-    x eval:5.
+    x(5).
 
-    #var y := 3 accumulator &of:Function.
+    var y := accumulator(3).
 
-    console write:(x eval:2.3r).
-].
+    console write(x(2.3r))
+]
