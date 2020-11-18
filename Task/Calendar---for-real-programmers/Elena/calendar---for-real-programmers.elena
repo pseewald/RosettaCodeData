@@ -1,132 +1,147 @@
-#define system.
-#define system'text.
-#define system'routines.
-#define system'calendar.
-#define extensions.
-#define extensions'math.
-#define extensions'routines.
+import system'text.
+import system'routines.
+import system'calendar.
+import extensions.
+import extensions'routines.
 
-#symbol MonthNames = ("JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER").
-#symbol DayNames = ("MO", "TU", "WE", "TH", "FR", "SA", "SU").
+const MonthNames = ("JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER").
+const DayNames = ("MO", "TU", "WE", "TH", "FR", "SA", "SU").
 
-#class CalendarMonthPrinter
+class CalendarMonthPrinter
 {
-    #field theDate.
-    #field theLine.
-    #field theMonth.
-    #field theYear.
-    #field theRow.
+    object theDate.
+    object theLine.
+    object theMonth.
+    object theYear.
+    object theRow.
 
-    #constructor new &Year:aYear &Month:aMonth
+    constructor year:aYear month:aMonth
     [
         theMonth := aMonth.
         theYear := aYear.
-        theLine := TextBuffer new.
-        theRow := Integer new.
+        theLine := TextBuilder new.
+        theRow := Integer new(0).
     ]
 
-    #method firstLine : aDay
+    writeTitle
     [
-        theRow << 0.
-        theDate := Date new &Year:theYear &Month:theMonth &Day:aDay.
-        control foreach:DayNames &do: aName
-            [ theLine write:" " write:aName ].
+        theRow value := 0.
+        theDate := Date new(theYear, theMonth, 1).
+        DayNames forEach(:aName)
+            [ theLine print(" ",aName) ]
     ]
 
-    #method nextLine
+    writeLine
     [
         theLine clear.
 
-        (theDate Month == theMonth)
-            ? [
-                theLine~textOp write:"   " &length:(((theDate DayOfWeek) => 0 ? [ 7 ] ! [ theDate DayOfWeek ]) - 1).
+        if (theDate month == theMonth)
+            [
+                theLine write:"   " length((theDate dayOfWeek == 0)iif(7,theDate dayOfWeek) - 1).
 
-                control do:
                 [
-                    theLine~textOp write:(theDate Day) &paddingLeft:3 &with:" ".
-
-                    theDate := theDate add &Days:1.
+                    theLine write:(theDate day; literal) paddingLeft:3 with:$32.
+                    theDate := theDate addDays:1.
                 ]
-                &until:[(theDate Month != theMonth)or:[theDate DayOfWeek == 1]].
+                repeatUntil:$((theDate month != theMonth)||(theDate dayOfWeek == 1)).
             ].
 
-        #var aLength := theLine length.
-        (aLength < 21)
-            ? [ theLine~textOp write:" " &length:(21 - aLength). ].
+        int aLength := theLine length.
+        if (aLength < 21)
+            [ theLine write:" " length(21 - aLength). ].
 
-        theRow += 1.
-
-        ^ theRow < 7.
+        theRow append(1).
     ]
 
-    #method enumerator =
+    indexer = BaseIndexer::
     {
-        set &index:anIndex [ self firstLine:(anIndex + 1) ]
+        bool available = theRow < 7.
 
-        next [ ^ self nextLine. ]
+        readIndexTo(ref<int> anIndex) [ theRow readValueTo(anIndex) ]
+
+        writeIndex(int anIndex)
+        [
+            if (anIndex <= theRow)
+                [ self writeTitle ].
+
+            while (anIndex > theRow)
+                [ self writeLine ]
+        ]
+
+        appendIndex(int anIndex)
+            <= writeIndex(theRow value + anIndex).
+
+        readLengthTo(ref<int> retVal) [ retVal value := 7 ]
 
         get = self.
+
+        set : o [ NotSupportedException new; raise ]
     }.
 
-    #method printTitleTo : anOutput
+    printTitleTo : anOutput
     [
-        anOutput~textOp write:(MonthNames @(theMonth - 1)) &padding:21 &with:" ".
+        anOutput write(MonthNames[theMonth - 1]) padding:21 with:$32.
     ]
 
-    #method printTo : anOutput
+    printTo : anOutput
     [
-        anOutput write:(theLine literal).
+        anOutput write(theLine literal).
     ]
 }
 
-#class Calendar
+class Calendar
 {
-    #field theYear.
-    #field theRowLength.
+    int theYear.
+    int theRowLength.
 
-    #constructor new : aYear
+    constructor new : aYear
     [
-        theYear := aYear int.
+        theYear := aYear.
         theRowLength := 3.
     ]
 
-    #method printTo:anOutput
+    printTo:anOutput
     [
-        anOutput~textOp write:"[SNOOPY]" &padding:(theRowLength * 25) &with:" " writeLine.
-        anOutput~textOp write:theYear &padding:(theRowLength * 25) &with:" " writeLine writeLine.
+        anOutput write:"[SNOOPY]" padding:(theRowLength * 25) with:$32.
+        anOutput writeLine.
+        anOutput write:(theYear literal) padding:(theRowLength * 25) with:$32.
+        anOutput writeLine; writeLine.
 
-        #var aRowCount := 12 / theRowLength.
-        #var Months := matrixControl new &m:aRowCount &n:theRowLength &each: (:i:j) [ CalendarMonthPrinter new &Year:theYear &Month:(i * theRowLength + j + 1) ].
+        var aRowCount := 12 / theRowLength.
+        var Months := Array new(aRowCount); populate(:i)
+            (Array new:theRowLength;
+                populate(:j)
+                    ( CalendarMonthPrinter year:theYear month(i * theRowLength + j + 1))).
 
-        control foreach:Months &do: aRow
+        Months forEach(:aRow)
         [
-            control foreach:aRow &do: aMonth
+            aRow forEach(:aMonth)
             [
                 aMonth printTitleTo:anOutput.
-
                 anOutput write:"   ".
             ].
 
             anOutput writeLine.
 
-            controlEx for:(ParallelEnumerator new:aRow) &do: aLine
+            ParallelEnumerator new:aRow; forEach(:aLine)
             [
-                control foreach:aLine &do: aPrinter
+                aLine forEach(:aPrinter)
                 [
                     aPrinter printTo:anOutput.
-
-                    anOutput write:"   ".
+                    anOutput write:"   "
                 ].
 
-                anOutput writeLine.
+                anOutput writeLine
             ].
         ].
     ]
 }
 
-#symbol program =
+public program =
 [
-    #var aCalender := Calendar new:1969.
+    var aCalender := Calendar new(console write:"ENTER THE YEAR:"; readLineTo(Integer new)).
 
     aCalender printTo:console.
+
+    console readChar.
 ].

@@ -23,7 +23,7 @@ contains
 
       cnt = 0         ! Initialize to zero to prevent false counts
       FORALL (I=1:Z)  ! Not sure that this gives any benefit over a DO loop.
-      cnt(array(i)) = cnt(array(i)) + 1
+         cnt(array(i)) = cnt(array(i)) + 1
       END FORALL
 !
 !   ok - cnt contains the frequency of every value

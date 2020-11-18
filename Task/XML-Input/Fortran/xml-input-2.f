@@ -23,7 +23,7 @@ program fox_rosetta
       p2 => item(pointList, i)
       call extractDataAttribute(p2, "Name", name)
       write (*, *) name
-   enddo
+   end do
 
    call destroy(doc)
 end program fox_rosetta

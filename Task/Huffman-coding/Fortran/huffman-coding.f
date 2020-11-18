@@ -34,7 +34,7 @@ contains
    subroutine siftdown(this, a)
       class(queue)           :: this
       integer                 :: a, parent, child
-      associate (x=>this%buf)
+      associate (x => this%buf)
          parent = a
          do while (parent*2 <= this%n)
             child = parent*2

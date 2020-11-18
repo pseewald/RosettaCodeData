@@ -16,7 +16,7 @@ program tixi_rosetta
       if (error /= 0) exit
       write (*, *) name
       i = i + 1
-   enddo
+   end do
 
    call tixi_close_document(handle, error)
 

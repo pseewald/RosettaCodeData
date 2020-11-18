@@ -54,22 +54,22 @@ program Four_bit_adder
    do i = 0, 15
       a(0) = btest(i, 0); a(1) = btest(i, 1); a(2) = btest(i, 2); a(3) = btest(i, 3)
       where (a)
-      ai = 1
+         ai = 1
       else where
-      ai = 0
+         ai = 0
       end where
       do j = 0, 15
          b(0) = btest(j, 0); b(1) = btest(j, 1); b(2) = btest(j, 2); b(3) = btest(j, 3)
          where (b)
-         bi = 1
+            bi = 1
          else where
-         bi = 0
+            bi = 0
          end where
          call fourbitadder(a, b, s)
          where (s)
-         si = 1
+            si = 1
          elsewhere
-         si = 0
+            si = 0
          end where
          write (*, "(4i1,a,4i1,a,5i1)") ai(3:0:-1), " + ", bi(3:0:-1), " = ", si(4:0:-1)
       end do

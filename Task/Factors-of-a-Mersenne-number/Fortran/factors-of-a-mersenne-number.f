@@ -40,7 +40,7 @@ CONTAINS
                n = MOD(n*n*2, q)
             ELSE
                n = MOD(n*n, q)
-            ENDIF
+            END IF
          END DO
          IF (n == 1) THEN
             Mfactor = q

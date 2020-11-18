@@ -54,7 +54,7 @@ contains
             k = k + 1
             write (fmt, '(a2,i1,a1)') '(i', L(j), ')'
             write (6, fmt, advance='no') k
-         enddo
+         end do
          write (6, *) ''
       end do
    end subroutine floyd

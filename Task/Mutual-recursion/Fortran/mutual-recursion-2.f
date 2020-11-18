@@ -7,8 +7,8 @@ program testmutrec
    integer, dimension(20) :: ra, rb
 
    forall (i=1:20)
-   ra(i) = m(a(i))
-   rb(i) = f(b(i))
+      ra(i) = m(a(i))
+      rb(i) = f(b(i))
    end forall
 
    write (*, '(20I3)') rb

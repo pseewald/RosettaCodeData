@@ -36,7 +36,7 @@ contains
          tutor = .false.
       else
          tutor = tutorialized
-      endif
+      end if
 
       r = 0
 
@@ -48,7 +48,7 @@ contains
          else
             if (tutor) write (*, '(I4, " ", I6, A)') plier, plicand, " kept"
             r = r + plicand
-         endif
+         end if
          call halve(plier)
          call doublit(plicand)
       end do

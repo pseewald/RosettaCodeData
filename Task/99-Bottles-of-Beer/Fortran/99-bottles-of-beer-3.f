@@ -125,7 +125,7 @@ contains
       do while (bottles%quantity >= 0)
          call bottles%show_quantity()
          call bottles%take_one()
-      enddo
+      end do
    end subroutine make_song
 
 end program bottles_song

@@ -6,7 +6,7 @@
 
           C You did not ask, but the following logical operators are also standard
           C since ANSI FORTRAN 66
-C       =======================================================================
+          C       =======================================================================
 
           C This yields the same results as .EQ. , but has lower operator precedence
           C and only works with LOGICAL operands:

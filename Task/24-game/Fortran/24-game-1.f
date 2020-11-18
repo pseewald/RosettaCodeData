@@ -21,11 +21,11 @@ program game_24
       forall (i=1:11) syntax(i) = expression(i:i)
       ascii = iachar(syntax)
       where (syntax >= '0' .and. syntax <= '9')
-      syntax = '1'  ! number
+         syntax = '1'  ! number
       elsewhere(syntax == '+' .or. syntax == '-' .or. syntax == '*' .or. syntax == '/')
-      syntax = 'x'  ! op
+         syntax = 'x'  ! op
       elsewhere(syntax /= '(' .and. syntax /= ')')
-      syntax = '-'  ! error
+         syntax = '-'  ! error
       end where
 
       reals = real(ascii - 48)

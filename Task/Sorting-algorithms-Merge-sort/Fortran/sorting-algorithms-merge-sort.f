@@ -15,14 +15,14 @@ subroutine Merge(A, NA, B, NB, C, NC)
       else
          C(K) = B(J)
          J = J + 1
-      endif
+      end if
       K = K + 1
-   enddo
+   end do
    do while (I <= NA)
       C(K) = A(I)
       I = I + 1
       K = K + 1
-   enddo
+   end do
    return
 
 end subroutine merge
@@ -41,9 +41,9 @@ recursive subroutine MergeSort(A, N, T)
          V = A(1)
          A(1) = A(2)
          A(2) = V
-      endif
+      end if
       return
-   endif
+   end if
    NA = (N + 1)/2
    NB = N - NA
 
@@ -53,7 +53,7 @@ recursive subroutine MergeSort(A, N, T)
    if (A(NA) > A(NA + 1)) then
       T(1:NA) = A(1:NA)
       call Merge(T, NA, A(NA + 1), NB, A, N)
-   endif
+   end if
    return
 
 end subroutine MergeSort

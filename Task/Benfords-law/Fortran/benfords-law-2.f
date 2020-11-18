@@ -9,7 +9,7 @@ subroutine fibber(a, b, c, d)
       d = d/10
    else
       c = b
-   endif
+   end if
 end subroutine fibber
 
 integer function leadingDigit(a)

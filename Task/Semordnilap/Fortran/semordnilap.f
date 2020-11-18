@@ -34,7 +34,7 @@ program Semordnilap
    do words = 1, 32768
       read (7, '(a)', iostat=ios) dictionary(words)
       if (ios .ne. 0) exit
-   enddo
+   end do
    close (7)
    if (iachar(dictionary(words) (1:1)) .eq. 0) words = words - 1
    ! sort the dictionary
@@ -50,8 +50,8 @@ program Semordnilap
           .and. (dictionary(i) .ne. backword(swords + 1))) then             ! and it's not a palindrome
          swords = swords + 1
          call bs(backword, swords)
-      endif
-   enddo
+      end if
+   end do
    call random_number(harvest)
    call reverse('spalindromes', backword(swords + 1))
    write (6, *) '5 of ', swords, backword(swords + 1)
@@ -66,10 +66,10 @@ contains
       L = len_trim(inp)
       do k = 1, L
          outp(L + 1 - k:L + 1 - k) = inp(k:k)
-      enddo
+      end do
       do k = L + 1, len(outp)
          outp(k:k) = ' '
-      enddo
+      end do
    end subroutine reverse
 
    subroutine bs(a, n) ! ok, despite having claimed that bubble sort should be unceremoniously buried, I'll use it anyway because I expect the dictionary is nearly ordered.  It's also not a terrible sort for less than 5 items.
@@ -88,11 +88,11 @@ contains
                   t = a(j + 1) (k:k)
                   a(j + 1) (k:k) = a(j) (k:k)
                   a(j) (k:k) = t(1:1)
-               enddo
-            endif
-         enddo
+               end do
+            end if
+         end do
          if (done) return
-      enddo
+      end do
    end subroutine bs
 
    logical function binary_search(source, n, target)
@@ -109,8 +109,8 @@ contains
          else
             if (m .eq. a) exit
             a = m
-         endif
-      enddo
+         end if
+      end do
       binary_search = (target .eq. source(a)) .or. (target .eq. source(z))
    end function binary_search
 

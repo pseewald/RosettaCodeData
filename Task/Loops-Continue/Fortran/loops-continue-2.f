@@ -25,7 +25,7 @@ PROGRAM CONTINUELOOP
 
          C Continue the loop; that is, skip to the end of the loop.
          GOTO 10
-      ENDIF
+      END IF
 
       C Write I with a comma and no newline.
       WRITE (*, 5001) I

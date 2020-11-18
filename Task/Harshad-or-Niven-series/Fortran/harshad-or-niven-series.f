@@ -12,7 +12,7 @@ program Harshad
    do i = 1, 20
       call nextHarshad(h)
       write (6, '(i5)', advance='no') h
-   enddo
+   end do
    h = 1000
    call nextHarshad(h)
    write (6, '(i5)') h

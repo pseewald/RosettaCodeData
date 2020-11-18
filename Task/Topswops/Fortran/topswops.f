@@ -42,7 +42,7 @@ program topswort
    integer :: i, j, m
 
    forall (i=1:10)
-   x(i) = i
+      x(i) = i
    end forall
 
    do i = 1, 10

@@ -29,9 +29,9 @@ contains
       t = 0
       forall (i=1:size(a)) t(i, 1:a(i)) = 1  ! set up abacus
       forall (i=1:m)             ! let beads "fall"; instead of
-      s(i) = sum(t(:, i))    ! moving them one by one, we just
-      t(:, i) = 0            ! count how many should be at bottom,
-      t(1:s(i), i) = 1       ! and then "reset" and set only those
+         s(i) = sum(t(:, i))    ! moving them one by one, we just
+         t(:, i) = 0            ! count how many should be at bottom,
+         t(1:s(i), i) = 1       ! and then "reset" and set only those
       end forall
 
       forall (i=1:size(a)) a(i) = sum(t(i, :))

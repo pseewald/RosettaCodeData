@@ -17,7 +17,7 @@ Program Hickerson
          write (*, 10) n, s, ''
       else
          write (*, 10) n, s, ' NOT'
-      endif
+      end if
    end do
 10 format('h(', i2, ') = ', F23.3, ' is', A, ' an almost-integer')
 end program Hickerson

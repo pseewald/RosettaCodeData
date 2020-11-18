@@ -46,7 +46,7 @@ contains
          if (answer > 0) write (*, fmt) " at ", add
          !          deallocate(temp)
          temp = string1(add + 1:) ! auto reallocation
-      enddo
+      end do
       answer = 1
    end function has
    !     Determining if the first string ends with the second string

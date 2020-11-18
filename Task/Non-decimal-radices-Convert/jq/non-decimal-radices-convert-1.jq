@@ -10,7 +10,7 @@ def convert(base):
     end
   end;
 
-# input string is converted from "base" to an integer, wihtin limits
+# input string is converted from "base" to an integer, within limits
 # of the underlying arithmetic operations, and without error-checking:
 def to_i(base):
   explode

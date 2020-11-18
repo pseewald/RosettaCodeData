@@ -39,16 +39,16 @@ contains
                else
                   call random_number(x)
                   v = -minmax(3 - player, bm) - int(10*x)
-               endif
+               end if
                if (v > bestv) then
                   bestv = v
                   bestm = move
-               endif
+               end if
                b(move) = 0
                if (v == win) exit
-            endif
-         enddo
-      endif
+            end if
+         end do
+      end if
    end function minmax
 end module tic
 program tictactoe
@@ -73,27 +73,27 @@ program tictactoe
                   read (*, *, iostat=ios), move
                   if (ios == 0 .and. move >= 0 .and. move <= 9) exit readloop
                   write (*, "(a)", advance='no'), 'huh? Try again (0..9): '
-               enddo readloop
+               end do readloop
                if (move == 0) exit mainloop
                if (b(move) == 0) exit getloop
                write (*, "(a)", advance='no'), 'Already occupied, again (0..9): '
-            enddo getloop
+            end do getloop
             b(move) = 2
             if (iswin(2)) then   ! this should not happen
                call printb('***** You win *****')
                exit plyloop
-            endif
-         endif
+            end if
+         end if
          v = minmax(1, bestmove)   ! computer move
          b(bestmove) = 1
          if (iswin(1)) then
             call printb('***** I win *****')
             exit plyloop
-         endif
+         end if
          write (*, "(/,a,i3)"), 'My move: ', bestmove
          call printb(' ')
-      enddo plyloop
+      end do plyloop
       if (ply == 5) write (*, "('***** Draw *****',/)")
       player = 3 - player
-   enddo mainloop
+   end do mainloop
 end program

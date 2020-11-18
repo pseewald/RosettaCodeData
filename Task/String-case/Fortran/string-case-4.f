@@ -17,18 +17,18 @@ contains
       if (first) then
          do i = 0, 255
             convtable(i) = char(i)
-         enddo
+         end do
          do i = 1, len(low)
             convtable(iachar(low(i:i))) = char(iachar(high(i:i)))
-         enddo
+         end do
          first = .false.
-      endif
+      end if
 
       t = s
 
       do i = 1, len_trim(s)
          t(i:i) = convtable(iachar(s(i:i)))
-      enddo
+      end do
 
    end function to_upper
 
@@ -45,18 +45,18 @@ contains
       if (first) then
          do i = 0, 255
             convtable(i) = char(i)
-         enddo
+         end do
          do i = 1, len(low)
             convtable(iachar(high(i:i))) = char(iachar(low(i:i)))
-         enddo
+         end do
          first = .false.
-      endif
+      end if
 
       t = s
 
       do i = 1, len_trim(s)
          t(i:i) = convtable(iachar(s(i:i)))
-      enddo
+      end do
 
    end function to_lower
 

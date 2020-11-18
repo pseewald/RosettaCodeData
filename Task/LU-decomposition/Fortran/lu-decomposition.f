@@ -14,10 +14,10 @@ contains
       n = size(a, 1)
       allocate (aa(n, n), l(n, n), u(n, n), p(n, n), ipiv(n))
       forall (j=1:n, i=1:n)
-      aa(i, j) = a(i, j)
-      u(i, j) = 0d0
-      p(i, j) = merge(1, 0, i .eq. j)
-      l(i, j) = merge(1d0, 0d0, i .eq. j)
+         aa(i, j) = a(i, j)
+         u(i, j) = 0d0
+         p(i, j) = merge(1, 0, i .eq. j)
+         l(i, j) = merge(1d0, 0d0, i .eq. j)
       end forall
       call lu(aa, ipiv)
       do i = 1, n

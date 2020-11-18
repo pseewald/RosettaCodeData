@@ -57,7 +57,7 @@ contains
          gpi => gi
          compose = 0
          return
-      endif
+      end if
 
       if (.not. associated(fpi)) error stop "fpi"
       if (.not. associated(gpi)) error stop "gpi"

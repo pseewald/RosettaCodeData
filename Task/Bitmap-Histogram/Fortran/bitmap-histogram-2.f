@@ -23,13 +23,13 @@ program BasicImageTests
    call get_histogram(gray, histo)
    ml = histogram_median(histo)
    where (gray%channel >= ml)
-   animage%red = 255
-   animage%green = 255
-   animage%blue = 255
+      animage%red = 255
+      animage%green = 255
+      animage%blue = 255
    elsewhere
-   animage%red = 0
-   animage%green = 0
-   animage%blue = 0
+      animage%red = 0
+      animage%green = 0
+      animage%blue = 0
    end where
 
    open (unit=10, file='elaborated.ppm', action='write')

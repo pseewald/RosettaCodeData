@@ -22,13 +22,13 @@ program cia
       read (5, *, iostat=ios) s
       if (0 .ne. ios) then
          exit
-      endif
+      end if
       call lower_case(s)
       cie = cie + occurrences(s, 'cie')
       cei = cei + occurrences(s, 'cei')
       ie = ie + occurrences(s, 'ie')
       ei = ei + occurrences(s, 'ei')
-   enddo
+   end do
    write (6, '(1x,4(a4,1x))') 'ie', 'ei', 'cie', 'cei'
    write (6, '(1x,4(i4,1x))') ie, ei, cie, cei ! 488 230 24 13
    write (6, '(1x,2(a,1x))') '        [^c]ie', plausibility(ie, ei)
@@ -42,7 +42,7 @@ contains
       integer :: i
       do i = 1, len_trim(s)
          s(i:i) = achar(ior(iachar(s(i:i)), 32))
-      enddo
+      end do
    end subroutine lower_case
 
    integer function occurrences(a, b)
@@ -66,6 +66,6 @@ contains
          plausibility = 'plausible'
       else
          plausibility = 'implausible'
-      endif
+      end if
    end function plausibility
 end program cia

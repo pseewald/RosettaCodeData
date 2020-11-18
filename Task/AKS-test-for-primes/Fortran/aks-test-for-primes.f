@@ -85,14 +85,14 @@ contains
                write (*, fmt='(A)', advance='no') ' + '
             else
                write (*, fmt='(A)', advance='no') ' - '
-            endif
+            end if
          else
             if (coeffs(i) .gt. 0) then
                write (*, fmt='(A)', advance='no') '   '
             else
                write (*, fmt='(A)', advance='no') ' - '
-            endif
-         endif
+            end if
+         end if
 
          if (p .eq. 0) then
             write (*, fmt='(A)', advance='no') trim(adjustl(cbuf))

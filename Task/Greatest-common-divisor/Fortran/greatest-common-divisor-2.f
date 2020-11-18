@@ -7,6 +7,6 @@ subroutine gcd_iter(value, u, v)
       t = u
       u = v
       v = mod(t, v)
-   enddo
+   end do
    value = abs(u)
 end subroutine gcd_iter

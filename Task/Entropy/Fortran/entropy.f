@@ -17,7 +17,7 @@ program shannonEntropy
       write (0, *) 'Expected a command line argument with some length.'
    else
       write (6, *) 'Shannon entropy of '//(s(1:L))//' is ', se(s(1:L))
-   endif
+   end if
 
 contains
    !     algebra

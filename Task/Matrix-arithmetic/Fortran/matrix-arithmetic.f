@@ -61,8 +61,8 @@ contains
             b(:, i:) = a(2:, i + 1:)
             accumulation = accumulation + sgn*a(1, i)*det(b, n - 1, permanent)
             sgn = sgn*permanent
-         enddo
-      endif
+         end do
+      end if
    end function det
 
 end program f

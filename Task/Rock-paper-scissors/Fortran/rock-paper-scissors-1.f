@@ -47,7 +47,7 @@ program rpsgame
             if (cc .eq. 'r') i = COMPUTER
          else
             exit
-         endif
+         end if
          score(i) = score(i) + 1
       end if
       i = scan('rps', answer)

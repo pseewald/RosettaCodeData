@@ -5,11 +5,13 @@
 # => 1
 
 ["a","b","c","b"]
-  | index("x") as $ix
-  | if $ix then $ix else error("element not found") end
+  | index("x") // error("element not found")
 # => jq: error: element not found
 
 # Extra task - the last element of an array can be retrieved
-# using -1 as an index:
+# using `rindex/` or by using -1 as an index into the array produced by `indices/1`:
+["a","b","c","b","d"] | rindex("b")
+# => 3
+
 ["a","b","c","b","d"] | indices("b")[-1]
 # => 3

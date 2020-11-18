@@ -33,7 +33,7 @@ contains
          allocate (population(n + 1))
          population(1:n) = tmp
          population(n + 1) = val
-      endif
+      end if
    end subroutine sample_add
 
    ! Calculates standard deviation for given set of values

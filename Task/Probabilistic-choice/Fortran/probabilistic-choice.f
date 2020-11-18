@@ -30,4 +30,4 @@ PROGRAM PROBS
    WRITE (*, "(A,8F10.6)") "Target Probability:  ", expected
    WRITE (*, "(A,8F10.6)") "Attained Probability:", REAL(probcount)/REAL(trials)
 
-ENDPROGRAM PROBS
+END PROGRAM PROBS

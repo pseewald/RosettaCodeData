@@ -16,7 +16,7 @@ program main
 
    do n = 0, 14
       write (*, '(1x,i5,i10)') n, int(catalan_numbers(n))
-   enddo
+   end do
 
    write (*, '(1x,a)') '==============='
 
@@ -38,7 +38,7 @@ double precision recursive function catalan_numbers(n) result(value)
       value = 1
    else
       value = (2.0d0*dfloat(2*n - 1)/dfloat(n + 1))*catalan_numbers(n - 1)
-   endif
+   end if
 
    !=======================================================================================
 end function catalan_numbers
