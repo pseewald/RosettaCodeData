@@ -41,7 +41,7 @@ program json_fortran
 
    ! read directly from a character string
    call json%load_from_string('{ "PhoneBook": [ { "name": "Adam", "phone": "0000001" }, &
-                              { "name": "Eve", "phone": "0000002" }, { "name": "Julia", "phone": "6666666" } ]}')
+&                              { "name": "Eve", "phone": "0000002" }, { "name": "Julia", "phone": "6666666" } ]}')
    ! print it to the console
    call json%print_file()
 
